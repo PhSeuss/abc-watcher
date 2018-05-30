@@ -23,8 +23,8 @@ class Header extends Component {
               <label for="toggleCbox" className="navbar-brand">
                 <i className="fa fa-bars" />
               </label>
-              <Link to="/" className="navbar-brand">
-                ABC
+              <Link to="/" className="navbar-brand company-name">
+                ABC SOLUTION
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">

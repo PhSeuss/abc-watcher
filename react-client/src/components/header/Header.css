@@ -10,6 +10,9 @@
 #toggleCbox:checked + .sidenav {
   display: none;
 }
+.company-name {
+  font-size: 25px;
+}
 /* input[type='checkbox'] {
   height: 30px;
   width: 30px;

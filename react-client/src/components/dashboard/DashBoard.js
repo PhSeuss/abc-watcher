@@ -21,7 +21,7 @@ class DashBoard extends Component {
           </div>
 
           <div className="col-md-3">
-            <div className="panel panel-primary">
+            <div className="panel panel-success">
               <div className="panel-heading">
                 Panel with panel-primary class
               </div>
@@ -29,7 +29,7 @@ class DashBoard extends Component {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="panel panel-primary">
+            <div className="panel panel-danger">
               <div className="panel-heading">
                 Panel with panel-primary class
               </div>

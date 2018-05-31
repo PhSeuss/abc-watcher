@@ -5,4 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(email: 'test@gmail.com', password: '123456', password_confirmation: '123456')
+thuong = User.create(email: 'truonghoaithuong@gmail.com', password: '123456', password_confirmation: '123456')
+vinh = User.create(email: 'huuvinhtran4@gmail.com', password: '123456', password_confirmation: '123456')
+riseun = Station.create(name: 'Rise Sun', api: 'http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=8')
+ttc = Station.create(name: 'Thành Thành Công', api: 'http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=5')
+tb = Station.create(name: 'Trảng Bàng', api: 'http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=1')
+
+thuong.stations << tb
+thuong.stations << ttc

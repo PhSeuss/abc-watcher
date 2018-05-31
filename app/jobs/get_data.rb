@@ -1,17 +1,16 @@
 class GetData
 
-  def self.log 
-    self.new.log 
+  def self.exec
+    self.new.get_all_data 
   end
   
-  def get_geo_info 
-    HTTParty.get("http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=8").parsed_response 
-  end
-
-  def log 
-    geo_info = get_geo_info 
-    Rails.logger.debug(geo_info) 
-    # log response to database 
+  def get_all_data
+    stations = Station.all
+    stations.each do |station|
+      res = HTTParty.get(station.api)
+      lastOnline = Time.now - res['HappenedTime'].to_time 
+      puts res, res['StationName'], lastOnline
+    end
   end
 
 end

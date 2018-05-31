@@ -16,17 +16,14 @@ class StationStore {
       })
       .then(() => {
         this.stations.forEach(station => {
-          this.getData(token, station.id);
+          this.getData(token, station);
         });
-      })
-      .catch(err => {
-        console.log(err);
       });
   };
 
   @action
-  getData = (token, station_id) => {
-    fetch(`/v1/station/${station_id}/data`, {
+  getData = (token, station) => {
+    fetch(`/v1/station/${station.id}/data`, {
       method: 'GET',
       headers: {
         Authorization: `Basic ${token}`
@@ -34,17 +31,16 @@ class StationStore {
     })
       .then(res => res.json())
       .then(res => {
-        this.stations[station_id].data = res.data;
-        const tem = this.stations.slice();
-        this.stations = tem;
+        station.data = res.data;
+        this.stations = this.stations.slice();
       })
       .catch(err => console.log(err));
   };
 
-  @computed
-  get count() {
-    return this.stations.length;
-  }
+  // @computed
+  // get get_stations() {
+  //   return this.stations.slice();
+  // }
 }
 
 export default new StationStore();

@@ -20,7 +20,7 @@ class Header extends Component {
           <div className="container-fluid">
             <div className="navbar-header">
               <input type="checkbox" id="toggleCbox" />
-              <label for="toggleCbox" className="navbar-brand">
+              <label htmlFor="toggleCbox" className="navbar-brand">
                 <i className="fa fa-bars" />
               </label>
               <Link to="/" className="navbar-brand company-name">
@@ -28,6 +28,11 @@ class Header extends Component {
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">
+              <li>
+                <a href="">
+                  <span className="glyphicon glyphicon-gear" /> Setting
+                </a>
+              </li>
               <li>
                 <a href="">
                   <span className="glyphicon glyphicon-user" /> Profile

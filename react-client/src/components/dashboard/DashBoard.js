@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
 import './DashBoard.css';
+import { observer, inject } from 'mobx-react';
 
+@inject('StationsStore', 'AuthStore')
+@observer
 class DashBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  componentDidMount() {
+    this.props.StationsStore.getStations(this.props.AuthStore.token);
+  }
   render() {
+    const { stations } = this.props.StationsStore;
     return (
       <div>
-        <h2>Panels with Contextual Classes</h2>
         <div className="row panel-group">
-          <div className="col-md-3">
-            <div className="panel panel-primary">
-              <div className="panel-heading">
-                Panel with panel-primary class
+          {!stations ? (
+            <h2>Loading...</h2>
+          ) : (
+            stations.map(station => (
+              <div key={station.id} className="col-md-3">
+                <div className="panel panel-success">
+                  <div className="panel-heading">{station.name}</div>
+                  <div className="panel-body">
+                    {station.data ? (
+                      station.data.StrHappenedTime
+                    ) : (
+                      <span>Loading...</span>
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="panel-body">Panel Content</div>
-            </div>
-          </div>
-
-          <div className="col-md-3">
-            <div className="panel panel-success">
-              <div className="panel-heading">
-                Panel with panel-primary class
-              </div>
-              <div className="panel-body">Panel Content</div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="panel panel-danger">
-              <div className="panel-heading">
-                Panel with panel-primary class
-              </div>
-              <div className="panel-body">Panel Content</div>
-            </div>
-          </div>
+            ))
+          )}
         </div>
       </div>
     );

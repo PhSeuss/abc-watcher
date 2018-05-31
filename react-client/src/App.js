@@ -28,7 +28,6 @@ const PrivateRoute = () => {
   return (
     <div className="wrapper">
       <Header />
-      <SideBar />
       <div className="container">
         <Route exact path="/dashboard" component={DashBoard} />
         <Route exact path="/datatable" component={DataTable} />

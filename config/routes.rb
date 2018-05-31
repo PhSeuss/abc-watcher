@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     post '/session' => 'sessions#create'
     delete '/session' => 'sessions#destroy'
     get '/resources' => 'resources#index'
+    get '/email' => 'resources#email'
   end
 end

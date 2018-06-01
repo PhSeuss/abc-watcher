@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header/Header';
-import SideBar from './components/sidebar/SideBar';
 import DashBoard from './components/dashboard/DashBoard';
 import Contact from './components/contact/Contact';
 import Login from './components/login/Login';
-import DataTable from './components/datatable/DataTable';
+import StationsOptions from './components/stations/StationsOptions';
 import { inject, observer } from 'mobx-react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 
 @inject('AuthStore')
 @observer
@@ -29,10 +33,12 @@ const PrivateRoute = () => {
     <div className="wrapper">
       <Header />
       <div className="container">
-        <Route exact path="/dashboard" component={DashBoard} />
-        <Route exact path="/datatable" component={DataTable} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/" component={DashBoard} />
+        <Switch>
+          <Route exact path="/dashboard" component={DashBoard} />
+          <Route exact path="/stations/options" component={StationsOptions} />
+          <Route exact path="/contact" component={Contact} />
+          <Redirect to="/dashboard" />
+        </Switch>
       </div>
     </div>
   );

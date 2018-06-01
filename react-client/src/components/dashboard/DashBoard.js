@@ -7,11 +7,21 @@ import { observer, inject } from 'mobx-react';
 class DashBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.loaded = false;
   }
-  componentDidMount() {
-    // this.props.StationsStore.getStations(this.props.AuthStore.token);
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.loaded && this.props.StationsStore.stations) {
+      this.loaded = true;
+      this.props.StationsStore.getDataAll(this.props.AuthStore.token);
+    }
   }
+  componentWillUnmount() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
   render() {
     const { stations } = this.props.StationsStore;
     return (

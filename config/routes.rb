@@ -9,5 +9,10 @@ Rails.application.routes.draw do
     delete '/session' => 'sessions#destroy'
     
     get '/email' => 'resources#email'
+
+    
+  end
+  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
   end
 end

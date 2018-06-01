@@ -26,7 +26,7 @@ class Header extends Component {
             <ul className="nav navbar-nav navbar-right">
               <li>
                 <Link to="/stations/options">
-                  <span className="glyphicon glyphicon-gear" /> Setting
+                  <span className="glyphicon glyphicon-cog" /> Setting
                 </Link>
               </li>
               <li>

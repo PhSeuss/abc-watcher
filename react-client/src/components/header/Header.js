@@ -19,10 +19,6 @@ class Header extends Component {
         <nav className="navbar navbar-inverse navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
-              <input type="checkbox" id="toggleCbox" />
-              <label htmlFor="toggleCbox" className="navbar-brand">
-                <i className="fa fa-bars" />
-              </label>
               <Link to="/" className="navbar-brand company-name">
                 ABC SOLUTION
               </Link>

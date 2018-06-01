@@ -22,7 +22,6 @@ class Login extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(JSON.stringify(this.state));
     fetch('/v1/session', {
       method: 'POST',
       body: JSON.stringify(this.state),

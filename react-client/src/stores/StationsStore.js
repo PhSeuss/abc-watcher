@@ -2,6 +2,7 @@ import { observable, action, computed } from 'mobx';
 
 class StationStore {
   @observable stations = [];
+  @observable trigger = false;
   @action
   getStations = token => {
     fetch('/v1/stations', {
@@ -14,28 +15,37 @@ class StationStore {
       .then(res => {
         this.stations = res.stations;
       })
-      .then(() => {
-        this.getData(token);
-      });
+      .catch(err => console.log(err));
   };
 
   @action
-  getData = token => {
-    this.stations.forEach(station => {
-      fetch(`/v1/station/${station.id}/data`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${token}`
-        }
-      })
-        .then(res => res.json())
-        .then(res => {
-          station.data = res.data;
-          this.stations = this.stations.slice();
+  getDataAll = token => {
+    const that = this;
+    this.stations.forEach(function recursiveGet(station) {
+      that
+        .getDataOneStation(token, station)
+        .then(() => {
+          console.log('abc');
+          setTimeout(() => recursiveGet(station), 2000);
         })
-        .catch(err => console.log(err));
+        .catch(() => setTimeout(() => recursiveGet(station), 2000));
     });
   };
+  @action
+  getDataOneStation = (token, station) =>
+    fetch(`/v1/station/${station.id}/data`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        station.data = res.data;
+        this.stations = this.stations.slice();
+        return res;
+      })
+      .catch(err => err);
 
   @action
   addStation = (token, data) => {
@@ -52,8 +62,9 @@ class StationStore {
       })
       .catch(err => console.log(err));
   };
+
   @computed
-  get get_stations() {
+  get stationArray() {
     return this.stations.slice();
   }
 }

@@ -1,4 +1,6 @@
 .stations-options {
-  background-color: whitesmoke;
-  border: solid black 2px;
+  background-color: white;
+  padding: 40px;
+  border-radius: 0.2em;
+  height: 100%;
 }

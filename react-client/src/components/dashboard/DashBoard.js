@@ -10,7 +10,7 @@ class DashBoard extends Component {
     this.state = {};
   }
   componentDidMount() {
-    this.props.StationsStore.getStations(this.props.AuthStore.token);
+    // this.props.StationsStore.getStations(this.props.AuthStore.token);
   }
   render() {
     const { stations } = this.props.StationsStore;

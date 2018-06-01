@@ -4,3 +4,8 @@
   border-radius: 0.2em;
   height: 100%;
 }
+
+input[type='text'] {
+  height: 35px;
+  width: 100%;
+}

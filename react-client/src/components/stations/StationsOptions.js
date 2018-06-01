@@ -7,7 +7,55 @@ import './StationsOptions.css';
 class StationsOptions extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      addFormDisplay: false,
+      name: '',
+      api: ''
+    };
+  }
+  handleSubmit() {
+    console.log(this.state);
+  }
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+  handleAdd() {
+    this.setState({
+      addFormDisplay: true
+    });
+  }
+  renderForm() {
+    if (this.state.addFormDisplay)
+      return (
+        <tr>
+          <td>
+            <input
+              type="text"
+              name="name"
+              placeholder="Station Name"
+              onChange={this.handleChange.bind(this)}
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              name="api"
+              placeholder="Api to get data"
+              onChange={this.handleChange.bind(this)}
+            />
+          </td>
+          <td>
+            <button
+              className="btn btn-success"
+              onClick={this.handleSubmit.bind(this)}
+            >
+              Submit
+            </button>
+          </td>
+        </tr>
+      );
   }
   render() {
     const { stations } = this.props.StationsStore;
@@ -31,8 +79,13 @@ class StationsOptions extends Component {
                 </td>
               </tr>
             ))}
-
-            <button className="btn btn-info">Add Station</button>
+            {this.renderForm()}
+            <button
+              className="btn btn-info"
+              onClick={this.handleAdd.bind(this)}
+            >
+              Add Station
+            </button>
           </tbody>
         </table>
       </div>

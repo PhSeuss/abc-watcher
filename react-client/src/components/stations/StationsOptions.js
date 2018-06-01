@@ -31,6 +31,8 @@ class StationsOptions extends Component {
                 </td>
               </tr>
             ))}
+
+            <button className="btn btn-info">Add Station</button>
           </tbody>
         </table>
       </div>

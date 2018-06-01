@@ -37,10 +37,25 @@ class StationStore {
     });
   };
 
-  // @computed
-  // get get_stations() {
-  //   return this.stations.slice();
-  // }
+  @action
+  addStation = (token, data) => {
+    fetch('/v1/stations', {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ station: data })
+    })
+      .then(() => {
+        this.getStations(token);
+      })
+      .catch(err => console.log(err));
+  };
+  @computed
+  get get_stations() {
+    return this.stations.slice();
+  }
 }
 
 export default new StationStore();

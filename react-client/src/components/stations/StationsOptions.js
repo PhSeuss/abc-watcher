@@ -15,6 +15,10 @@ class StationsOptions extends Component {
   }
   handleSubmit() {
     console.log(this.state);
+    this.props.StationsStore.addStation(this.props.AuthStore.token, {
+      name: this.state.name,
+      api: this.state.api
+    });
   }
   handleChange(e) {
     this.setState({
@@ -80,14 +84,11 @@ class StationsOptions extends Component {
               </tr>
             ))}
             {this.renderForm()}
-            <button
-              className="btn btn-info"
-              onClick={this.handleAdd.bind(this)}
-            >
-              Add Station
-            </button>
           </tbody>
         </table>
+        <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>
+          Add Station
+        </button>
       </div>
     );
   }

@@ -15,26 +15,26 @@ class StationStore {
         this.stations = res.stations;
       })
       .then(() => {
-        this.stations.forEach(station => {
-          this.getData(token, station);
-        });
+        this.getData(token);
       });
   };
 
   @action
-  getData = (token, station) => {
-    fetch(`/v1/station/${station.id}/data`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Basic ${token}`
-      }
-    })
-      .then(res => res.json())
-      .then(res => {
-        station.data = res.data;
-        this.stations = this.stations.slice();
+  getData = token => {
+    this.stations.forEach(station => {
+      fetch(`/v1/station/${station.id}/data`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Basic ${token}`
+        }
       })
-      .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(res => {
+          station.data = res.data;
+          this.stations = this.stations.slice();
+        })
+        .catch(err => console.log(err));
+    });
   };
 
   // @computed

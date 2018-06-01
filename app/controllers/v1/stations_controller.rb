@@ -14,16 +14,16 @@ class V1::StationsController < V1::ApiController
   def create
       @station = Station.new(station_params)
       if @station.save
-          render :create
+          head :created
       else
-          head(:unprocessable_entity)
+          head :unprocessable_entity
       end
   end
 
   private
   
   def station_params
-      params.require(:station).permit(:email, :password, :password_confirmation)
+      params.require(:station).permit(:name, :api)
   end
 
 end

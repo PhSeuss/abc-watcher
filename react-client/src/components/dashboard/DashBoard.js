@@ -7,23 +7,21 @@ import { observer, inject } from 'mobx-react';
 class DashBoard extends Component {
   constructor(props) {
     super(props);
-    this.loaded = false;
+    this.state = {};
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.loaded && this.props.StationsStore.stations) {
-      this.loaded = true;
-      this.props.StationsStore.getDataAll(this.props.AuthStore.token);
-    }
+  componentDidUpdate(prevProps, prevState) {}
+  componentDidMount() {
+    const { getStations, getAllData } = this.props.StationsStore;
+    const { token } = this.props.AuthStore;
+    this.props.StationsStore.enablePolling();
+    getStations(token).then(res => getAllData(token));
   }
   componentWillUnmount() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+    this.props.StationsStore.disablePolling();
   }
 
   render() {
-    const { stations } = this.props.StationsStore;
+    const stations = this.props.StationsStore.stations;
     return (
       <div>
         <div className="row panel-group">

@@ -2,9 +2,16 @@ import { observable, action, computed } from 'mobx';
 
 class StationStore {
   @observable stations = [];
-  @observable trigger = false;
+  @observable polling = false;
+
+  enablePolling() {
+    this.polling = true;
+  }
+  disablePolling() {
+    this.polling = false;
+  }
   @action
-  getStations = token => {
+  getStations = token =>
     fetch('/v1/stations', {
       method: 'GET',
       headers: {
@@ -14,21 +21,17 @@ class StationStore {
       .then(res => res.json())
       .then(res => {
         this.stations = res.stations;
+        return;
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => err);
 
   @action
-  getDataAll = token => {
+  getAllData = token => {
     const that = this;
     this.stations.forEach(function recursiveGet(station) {
-      that
-        .getDataOneStation(token, station)
-        .then(() => {
-          console.log('abc');
-          setTimeout(() => recursiveGet(station), 2000);
-        })
-        .catch(() => setTimeout(() => recursiveGet(station), 2000));
+      that.getDataOneStation(token, station).then(() => {
+        if (that.polling) setTimeout(() => recursiveGet(station), 5000);
+      });
     });
   };
   @action

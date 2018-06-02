@@ -14,7 +14,7 @@ import {
 @observer
 class PrivateRoutes extends Component {
   componentDidMount() {
-    this.props.StationsStore.getStations(this.props.AuthStore.token);
+    // this.props.StationsStore.getStations(this.props.AuthStore.token);
   }
   render() {
     return (

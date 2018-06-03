@@ -20,7 +20,7 @@ class Header extends Component {
           <div className="container-fluid">
             <div className="navbar-header">
               <Link to="/" className="navbar-brand company-name">
-                ABC SOLUTION
+                ABC SOLUTIONS
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">

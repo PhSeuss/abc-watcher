@@ -5,6 +5,6 @@ class V1::ResourcesController < V1::ApiController
   end
 
   def email
-    UserMailer.stations_notify_email.deliver
+    UserMailer.stations_notify_email(['trang bang','phuoc dong']).deliver
   end
 end

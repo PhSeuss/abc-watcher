@@ -4,10 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>ABC Solution</h1>
-    <p>
-      One of your station is offline.<br>
-    </p>
+    <h1>ABC Solutions</h1>
+      <p>      
+       <% @down_stations.each do |station| %>
+        <i><%= station %></i>
+        <% end %>
+         is offline.<br>
+      </p>
     <p>
       To login to the site, just follow this link: <%= @url %>.
     </p>

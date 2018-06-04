@@ -8,7 +8,7 @@ class V1::StationsController < V1::ApiController
   def data
     station = Station.find(params[:id])
     data = HTTParty.get(station.api)
-    render json: {data: data}, status: :ok
+    render json: { data: data }, status: :ok
   end
 
   def create

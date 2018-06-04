@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import Login from '../components/login/Login';
 
-const PrivateRoutes = () => {
+const PublicRoutes = () => {
   return (
     <Router>
       <Switch>
@@ -18,4 +18,4 @@ const PrivateRoutes = () => {
   );
 };
 
-export default PrivateRoutes;
+export default PublicRoutes;

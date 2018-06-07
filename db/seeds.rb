@@ -11,5 +11,5 @@ riseun = Station.create(name: 'Rise Sun', api: 'http://envitayninh.com/api/Value
 ttc = Station.create(name: 'Thành Thành Công', api: 'http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=5')
 tb = Station.create(name: 'Trảng Bàng', api: 'http://envitayninh.com/api/Values/GetLatestData?user_id=1&station_id=1')
 
-thuong.stations << tb
-thuong.stations << ttc
+thuong.subscribed_stations << tb
+thuong.subscribed_stations << ttc
